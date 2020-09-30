@@ -1,0 +1,30 @@
+.org-picker{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    .mask{
+        position: absolute;
+        bottom: 0;
+        top: 0;    
+        width: 100%;
+        background: rgba(0, 0, 0, .5);
+    }
+    .picker-wrapper{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;    
+        background: #fff;
+        .picker-bar{
+            display: flex;
+            border-bottom: 1px solid #eee;
+            justify-content: space-between;
+            color: #333;
+            .picker-btn{
+                padding: 20px 40px;
+                font-size: 30px;
+            }
+        }
+    }
+}

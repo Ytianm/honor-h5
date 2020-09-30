@@ -1,0 +1,167 @@
+.search {
+  box-sizing: border-box;
+  width: 384px;
+  height: 60px;
+  border: 2px solid #b2312f;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+
+  input {
+    border: 0;
+    outline: 0;
+    width: 256px;
+  }
+
+  .search-icon {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+  }
+}
+
+.switch {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+  height: 60px;
+  background: #fb9f94;
+  border-radius: 30px;
+
+  > span {
+    margin: 5px;
+    width: 125px;
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    border-radius: 25px;
+  }
+  .checked {
+    background: url("../../imgs/btn-bg.png") no-repeat;
+    background-size: cover ;
+    color: #F6E1AA;
+  }
+}
+
+.search-wrap {
+  margin-top: 31px;
+  margin-bottom: 15px;
+  margin-left: 26px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.legend {
+  margin-right: 20px;
+  font-size: 24px;
+  font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+  font-weight: 500;
+  text-align: right;
+  color: #666;
+}
+
+.muti-legend {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 167px;
+  .legend-item {
+    font-size: 24px;
+    font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: #666666;
+    .legend-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.tab-wrap {
+  display: flex;
+  justify-content: space-around;
+  .tab-item {
+    width: 80px;
+    height: 40px;
+    background: #fb9f94;
+    border-radius: 20px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 22px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .active {
+    color: #F6E1AA;
+    background: url('../../imgs/btn-bg.png') no-repeat;
+    background-size: contain;
+  }
+}
+
+.rank-wrap {
+  margin: 0 18px 0 25px;
+  display: flex;
+  .rank-content {
+    margin-left: 57px ;
+    flex: 1
+  }
+
+  .rank-item-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    .progress {
+      position: relative;
+      width: 468px;
+      height: 30px;
+      border-radius: 15px;
+      .percent {
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        height: 100%;
+        height: 30px;
+        background: linear-gradient(#f07274 2%, #fdcf53 100%);
+        border-radius: 15px;
+      }
+    }
+  }
+}
+
+.rank-item {
+  .name {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 26px;
+    font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: #666666;    
+  }
+  .rank-item-wrap {
+    height: 30px;
+    .number-text {
+      padding-left: 9px;
+    }
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+
+
+

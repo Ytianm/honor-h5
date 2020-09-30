@@ -1,0 +1,30 @@
+
+.search {
+  box-sizing: border-box;
+  width: 192px;
+  height: 30px;
+  border: 1px solid #b2312f;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding-left: 9px;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  width: 128px;
+}
+
+.search-icon {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background: #b2312f;
+    margin-right: 8px;
+}
+
+.icon-close {
+  display: inline-block;
+  background: ;
+}

@@ -1,0 +1,63 @@
+.typeTabsOuterW {
+  padding: 4px;
+  .tabsListContent{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    align-items: center;
+    &.hor{
+      flex-direction: row;
+      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      .itemWrap{
+        margin-top: 0;
+        margin-left: 30px;
+        &.org{
+          margin-top: 0px;
+        }
+        &:first-of-type{
+          margin-left: 0;
+        }
+      }
+    }
+    .itemWrap{
+      flex-shrink: 0;
+      margin-top: 24px;
+      &.org{
+        margin-top: 38px;
+      }
+      &:first-of-type{
+        margin-top: 0;
+      }
+    }
+    .tabsListItem{
+      height: 40px;
+      width: 80px;
+      background: #fb9f94;
+      border-radius: 20px;
+      font-size: 26px;
+      font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+      font-weight: 500;
+      text-align: center;
+      line-height: 40px;
+      color: #ffffff;
+      &.cur{
+        background: url("./imgs/btn-bg.png") no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+  >img{
+    width: 40px;
+    margin-right: 17px;
+  }
+  .dateContent{
+    padding-top: 8px;
+    font-size: 30px;
+    font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: #b2312f;
+  }
+}

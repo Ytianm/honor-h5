@@ -1,0 +1,128 @@
+.rowNo {
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    font-size: 13px;
+    font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+    font-weight: 500;
+    color: #666666;
+}
+.noList{
+    display: none;
+}
+
+.separator {
+    padding: 0 6px;
+}
+
+.listTable {
+    width: 100%;
+    border: none;
+    padding: 0 9px;
+
+    .starTag {
+        display: flex;
+        height: 15px;
+        align-items: center;
+        padding-left: 15px;
+        position: relative;
+
+        >img {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -7.5px;
+            width: 15px;
+            margin-right: 2px;
+        }
+    }
+
+    .columnSort {
+        &.complex {
+            justify-content: flex-end;
+        }
+    }
+
+    .rank-wrap {
+        display: flex;
+        justify-content: center;
+    }
+
+    .rankWrapComp {
+        display: flex;
+        justify-content: flex-start;
+        width: 50px;
+    }
+
+    th {
+        margin: 0 10px;
+        height: 45px;
+        min-width: 60px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+        font-size: 15px;
+        font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+        font-weight: 500;
+        color: #333333;
+        padding: 0 15px;
+        text-overflow: unset;
+        white-space: nowrap;
+    }
+
+    td {
+        height: 45px;
+        min-width: 45px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+        font-size: 13px;
+        font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+        font-weight: 500;
+        color: #666666;
+        padding: 0 4px;
+        text-overflow: unset;
+        white-space: nowrap;
+    }
+
+    .show {
+        // display: inline-block;
+    }
+
+    .hide {
+        display: none;
+    }
+}
+
+.column1 {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 15px;
+        margin-right: 10px;
+    }
+
+    .rowName {
+        line-height: 18px;
+        font-size: 13px;
+        font-family: PingFang SC Medium, PingFang SC Medium-Medium;
+        font-weight: 500;
+        text-align: left;
+        color: #666666;
+    }
+}
+
+.cardTopList {
+    margin-top: 2px;
+    overflow-x: scroll;
+}
+
+.loadMore{
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 13px;
+    background: #eaeaea;
+    color: #666;
+}
