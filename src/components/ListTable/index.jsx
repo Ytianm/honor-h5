@@ -7,7 +7,6 @@ import RankNumTypes from '../RankNumTypes'
 class ListTable extends React.Component {
     constructor(props) {
         super()
-        this.tableList = props.list || []
     }
 
     sortTypesChange = num => {
@@ -15,24 +14,12 @@ class ListTable extends React.Component {
     }
 
     render() {
-        console.log(this.props);
-        const show1 = this.props.dataType === '1'
-        const show2 = this.props.dataType === '2'
-        const show3 = (this.props.dataType === '1' && this.props.tabType !== '9') || this.props.dataType === '2'
-        const show4 = (this.props.dataType === '1' && this.props.tabType === '9')
-        const show5 = this.props.list && this.props.list.length > 0
-
-        // const class1 = classnames({ 'show': show1, 'hide': !show1 })
-        // const class2 = classnames({ 'show': show2, 'hide': !show2 })
-        // const class3 = classnames({ 'show': show3, 'hide': !show3 })
-        // const class4 = classnames({ 'show': show4, 'hide': !show4 })
-        const class1 = classnames({ 'show': show1, 'hide': !show1 })
-        const class2 = classnames({ 'show': show2, 'hide': !show2 })
-        const class3 = classnames({ 'show': show3, 'hide': !show3 })
-        const class4 = classnames({ 'show': show4, 'hide': !show4 })
-
-        const showList = classnames('rowNo', { 'show': show5, 'hide': !show5 })
-        const noList = classnames('rowNo', 'noList', { 'show': !show5 })
+        const { dataType, tabType, list } = this.props
+        const show1 = dataType === '1'
+        const show2 = dataType === '2'
+        const show3 = (dataType === '1' && tabType !== '9') || dataType === '2'
+        const show4 = (dataType === '1' && tabType === '9')
+        const show5 = list && list.length > 0
 
         return (
             <div>
@@ -84,15 +71,15 @@ class ListTable extends React.Component {
                                 </th>
                                 }
                                 {show1 && <th>所属机构</th>}
-                                {show4 && <th className={class4}>所属团队</th>}
-                                {show4 && <th className={class4}>
+                                {show4 && <th>所属团队</th>}
+                                {show4 && <th>
                                     <div className={styles.columnSort}>
                                         <span>累计积分</span>
                                         <SortTypes onSortChange={this.sortTypesChange} />
                                     </div>
                                 </th>
                                 }
-                                {show4 && <th className={class4}>
+                                {show4 && <th>
                                     <div className={styles.columnSort}>
                                         <span>周积分</span>
                                         <SortTypes onSortChange={this.sortTypesChange} />
@@ -101,65 +88,63 @@ class ListTable extends React.Component {
                                 }
                             </tr>
                         </thead>
-                        {show5 && <tbody className={showList}>
+                        {show5 && <tbody>
                             {
-                                this.tableList.map((item, index) => {
+                                list.map((item, index) => {
                                     return (
-                                        <div>
-                                            <tr key={index}>
-                                                {/* 机构号 */}
-                                                <td>{index + 1}</td>
-                                                {/* 机构名 */}
-                                                {show2 && <td className={class2}>{index + 1}</td>}
-                                                {/* 机构名 */}
-                                                {show2 && <td className={class2}>
-                                                    <div className={styles.starTag}>
-                                                        <img className={classnames({ 'hide': item.numAll <= 10 })} src={require('../../imgs/star.png')} alt="" />
-                                                        {item.addMostName}
+                                        <tr key={index}>
+                                            {/* 机构号 */}
+                                            <td>{index + 1}</td>
+                                            {/* 机构名 */}
+                                            {show2 && <td>{index + 1}</td>}
+                                            {/* 机构名 */}
+                                            {show2 && <td>
+                                                <div className={styles.starTag}>
+                                                    {item.numAll > 10 && <img src={require('../../imgs/star.png')} alt="" />}
+                                                    {item.addMostName}
+                                                </div>
+                                            </td>
+                                            }
+                                            {/* 员工名 */}
+                                            {show1 && <td>
+                                                <div className={styles.starTag}>
+                                                    {item.numAll > 10 && <img src={require('../../imgs/star.png')} alt="" />}
+                                                    {item.staffName}
+                                                </div>
+                                            </td>}
+                                            {/* 周新增 */}
+                                            {show3 && <td>
+                                                <div className={classnames(styles.columnSort, styles.complex)}>
+                                                    {item.comparePreWeek}
+                                                    <span className={styles.separator}>/</span>
+                                                    <div className={styles.rankWrapComp}>
+                                                        <RankNumTypes rankNum={item.weekNewRanking} />
                                                     </div>
-                                                </td>
-                                                }
-                                                {/* 员工名 */}
-                                                {show1 && <td className={class1}>
-                                                    <div className={styles.starTag}>
-                                                        <img className={classnames({ 'hide': item.numAll <= 10 })} src={require('../../imgs/star.png')} alt="" />
-                                                        {item.staffName}
+                                                </div>
+                                            </td>
+                                            }
+                                            {/* 资产余额 */}
+                                            {show3 && <td>{item.projectNumber}</td>}
+                                            {/* 日新增 */}
+                                            {show3 && <td>
+                                                <div className={classnames(styles.columnSort, styles.complex)}>
+                                                    {item.comparePreDay}
+                                                    <span className={styles.separator}>/</span>
+                                                    <div className={styles.rankWrapComp}>
+                                                        <RankNumTypes rankNum={item.dayNewRanking} />
                                                     </div>
-                                                </td>}
-                                                {/* 周新增 */}
-                                                {show3 && <td className={class3}>
-                                                    <div className={classnames(styles.columnSort, styles.complex)}>
-                                                        {item.comparePreWeek}
-                                                        <span className={styles.separator}>/</span>
-                                                        <div className={styles.rankWrapComp}>
-                                                            <RankNumTypes rankNum={item.weekNewRanking} />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                }
-                                                {/* 资产余额 */}
-                                                {show3 && <td className={class3}>{item.projectNumber}</td>}
-                                                {/* 日新增 */}
-                                                {show3 && <td className={class3}>
-                                                    <div className={classnames(styles.columnSort, styles.complex)}>
-                                                        {item.comparePreDay}
-                                                        <span className={styles.separator}>/</span>
-                                                        <div className={styles.rankWrapComp}>
-                                                            <RankNumTypes rankNum={item.dayNewRanking} />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                }
-                                                {/* 所属机构 */}
-                                                <td>{item.belongOrganization}</td>
-                                                {/* 所属团队 */}
-                                                {show4 && <td className={class4}>市场</td>}
-                                                {/* 累计积分 */}
-                                                {show4 && <td className={class4}>{item.numAll}</td>}
-                                                {/* 周积分 */}
-                                                {show4 && <td className={class4}>{item.numAll}</td>}
-                                            </tr>
-                                        </div>
+                                                </div>
+                                            </td>
+                                            }
+                                            {/* 所属机构 */}
+                                            <td>{item.belongOrganization}</td>
+                                            {/* 所属团队 */}
+                                            {show4 && <td>市场</td>}
+                                            {/* 累计积分 */}
+                                            {show4 && <td>{item.numAll}</td>}
+                                            {/* 周积分 */}
+                                            {show4 && <td>{item.numAll}</td>}
+                                        </tr>
                                     )
                                 })
                             }
@@ -167,7 +152,7 @@ class ListTable extends React.Component {
                         }
                     </table>
                 </div>
-                <div className={noList}>暂无数据</div>
+                {!show5 && <div className={styles.rowNo}>暂无数据</div>}
                 <div className={styles.loadMore}>查看更多</div>
             </div>
         )

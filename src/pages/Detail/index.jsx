@@ -22,57 +22,57 @@ class DetailPage extends React.Component {
 
         this.dataList = [
             {
-                rangeMostName: '李梦琪梦琪',
-                numAll: 1,
+                staffName: '李梦琪梦琪',
+                comparePreDay: 1,
                 itemName: '金融资产',
                 itemPath: require('../../imgs/detail-icon1.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: 5,
+                staffName: '李梦琪',
+                comparePreDay: 5,
                 itemName: '储蓄存款',
                 itemPath: require('../../imgs/detail-icon2.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: 1200,
+                staffName: '李梦琪',
+                comparePreDay: 1200,
                 itemName: '小微贷款',
                 itemPath: require('../../imgs/detail-icon3.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: 0,
+                staffName: '李梦琪',
+                comparePreDay: 0,
                 itemName: '非按揭消贷',
                 itemPath: require('../../imgs/detail-icon4.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: -3,
+                staffName: '李梦琪',
+                comparePreDay: -3,
                 itemName: '保险中收',
                 itemPath: require('../../imgs/detail-icon5.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: 5,
+                staffName: '李梦琪',
+                comparePreDay: 5,
                 itemName: '基金销量',
                 itemPath: require('../../imgs/detail-icon6.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: 6,
+                staffName: '李梦琪',
+                comparePreDay: 6,
                 itemName: '五星级管家卡发卡且达标',
                 itemPath: require('../../imgs/detail-icon7.png'),
                 addMostName: '李后裔'
             },
             {
-                rangeMostName: '李梦琪',
-                numAll: -12,
+                staffName: '李梦琪',
+                comparePreDay: -12,
                 itemName: '厅堂外行吸金',
                 itemPath: require('../../imgs/detail-icon8.png'),
                 addMostName: '李后裔'
@@ -229,12 +229,12 @@ class DetailPage extends React.Component {
                                                         <div className={styles.rowName}>{item.itemName}</div>
                                                     </div>
                                                 </td>
-                                                <td>{item.numAll}粮票</td>
-                                                <td>{item.numAll}粮票</td>
-                                                <td>{item.numAll}粮票</td>
+                                                <td>{item.comparePreDay}</td>
+                                                <td>{item.comparePreDay}</td>
+                                                <td>{item.comparePreDay}</td>
                                                 <td>
                                                     <div className={styles.rankWrap}>
-                                                        <RankNumTypes rankNum={item.numAll} />
+                                                        <RankNumTypes rankNum={item.comparePreDay} />
                                                     </div>
                                                 </td>
                                             </tr>

@@ -5,18 +5,17 @@ import styles from './index.less'
 class RankNumTypes extends React.Component {
     constructor(props) {
         super()
-        this.props = props
-        this.rankType = this.showIcon()
     }
 
     showIcon = () => {
-        if (this.props.rankNum > 10) {
+        const {rankNum} = this.props
+        if (rankNum > 10) {
             return 1
-        } else if (this.props.rankNum > 0 && this.props.rankNum < 10) {
+        } else if (rankNum > 0 && rankNum < 10) {
             return 2
-        } else if (this.props.rankNum === 0) {
+        } else if (rankNum === 0) {
             return 3
-        } else if (this.props.rankNum < 0 && this.props.rankNum > -10) {
+        } else if (rankNum < 0 && rankNum > -10) {
             return 4
         } else {
             return 5
@@ -24,14 +23,16 @@ class RankNumTypes extends React.Component {
     }
 
     render() {
+        const rankType = this.showIcon()
+        const {rankNum} = this.props
         return (
             <div className={styles.rankOuterW}>
-                {this.rankType === 1 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-up.png')} alt="" />}
-                {this.rankType === 2 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-up.png')} alt="" />}
-                {this.rankType === 3 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-up.png')} alt="" />}
-                {this.rankType === 4 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-down.png')} alt="" />}
-                {this.rankType === 5 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-down.png')} alt="" />}
-                <span className={classnames(styles.num, this.rankType === 1 ? styles.down : '' , this.rankType === 5 && styles.down)}>{Math.abs(this.props.rankNum)}</span>
+                {rankType === 1 && <img className={styles.rankIcon} src={require('../../imgs/icon-big-up.png')} alt="" />}
+                {rankType === 2 && <img className={styles.rankIcon} src={require('../../imgs/icon-up.png')} alt="" />}
+                {rankType === 3 && <img className={styles.rankIcon} src={require('../../imgs/icon-big-up.png')} alt="" />}
+                {rankType === 4 && <img className={styles.rankIcon} src={require('../../imgs/icon-down.png')} alt="" />}
+                {rankType === 5 && <img className={styles.rankIcon} src={require('../../imgs/icon-big-down.png')} alt="" />}
+                <span className={classnames(styles.num, rankType === 1 ? styles.up : '' , rankType === 5 ? styles.down : '')}>{Math.abs(rankNum)}</span>
             </div>
         )
     }
