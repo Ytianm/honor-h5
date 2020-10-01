@@ -1,10 +1,12 @@
 import React from 'react';
 import classnames from 'classnames'
-import './index.less'
+import styles from './index.less'
 
 class RankNumTypes extends React.Component {
-    constructor() {
+    constructor(props) {
         super()
+        this.props = props
+        this.rankType = this.showIcon()
     }
 
     showIcon = () => {
@@ -23,13 +25,13 @@ class RankNumTypes extends React.Component {
 
     render() {
         return (
-            <div className="rank-outer-w">
-                <img className={classnames('rank-icon', { 'show': this.showIcon() == 1 })} src={require('../../imgs/icon-big-up.png')} alt="" />
-                <img className={classnames('rank-icon', { 'show': this.showIcon() == 2 })} src={require('../../imgs/icon-up.png')} alt="" />
-                <img className={classnames('rank-icon', { 'show': this.showIcon() == 3 })} src={require('../../imgs/icon-big-up.png')} alt="" />
-                <img className={classnames('rank-icon', { 'show': this.showIcon() == 4 })} src={require('../../imgs/icon-down.png')} alt="" />
-                <img className={classnames('rank-icon', { 'show': this.showIcon() == 5 })} src={require('../../imgs/icon-big-down.png')} alt="" />
-                <span className={classnames('num', { 'up': this.showIcon() == 1, 'down': this.showIcon() == 5 })}>{Math.abs(this.props.rankNum)}</span>
+            <div className={styles.rankOuterW}>
+                {this.rankType === 1 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-up.png')} alt="" />}
+                {this.rankType === 2 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-up.png')} alt="" />}
+                {this.rankType === 3 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-up.png')} alt="" />}
+                {this.rankType === 4 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-down.png')} alt="" />}
+                {this.rankType === 5 && <img className={classnames(styles.rankIcon)} src={require('../../imgs/icon-big-down.png')} alt="" />}
+                <span className={classnames(styles.num, this.rankType === 1 ? styles.down : '' , this.rankType === 5 && styles.down)}>{Math.abs(this.props.rankNum)}</span>
             </div>
         )
     }
