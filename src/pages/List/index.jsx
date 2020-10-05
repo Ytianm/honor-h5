@@ -18,14 +18,14 @@ class Search extends Component {
   render() {
     const { onInput } = this.props;
     return (
-      <div className="search">
-        <img className="search-icon" src={searchIcon} alt="" />
+      <div className={styles.search}>
+        <img className={styles.searchIcon} src={searchIcon} alt=""/>
         <input
           type="text"
           placeholder="请输入员工号或员工名"
           onInput={onInput}
         />
-        <i className="icon-close" />
+        <i className={styles.iconClose} />
       </div>
     );
   }
@@ -51,13 +51,13 @@ class SwitchTab extends Component {
     ];
     const { onChangeTab, pageType } = this.props;
     return (
-      <div className="switch">
+      <div className={styles.switch}>
         {tabList.map(({ label, id }) => {
           return (
             <span
               key={id}
-              className={classNames({ checked: pageType === id })}
-              onClick={() => onChangeTab(id)}
+              className={classNames({ [styles.checked]: pageType === id })}
+              onClick={() =>onChangeTab(id)}
             >
               {label}
             </span>
@@ -73,14 +73,14 @@ class ButtonTab extends Component {
   render() {
     const { list = [], direction, onClickItem, curAct } = this.props;
     return (
-      <div className="tab-wrap" style={{ flexDirection: direction }}>
+      <div className={styles.tabWrap} style={{ flexDirection: direction }}>
         {list.map(({ idProject, projectName }) => (
           <div
             onClick={() => {
               onClickItem(idProject);
             }}
-            className={classNames("tab-item", {
-              active: curAct === idProject,
+            className={classNames([styles.tabItem], {
+              [styles.active]: curAct === idProject,
             })}
           >
             {projectName}
@@ -93,15 +93,17 @@ class ButtonTab extends Component {
 
 // 排行内容
 class RankItem extends Component {
+  componentDidUpdate() {
+  }
   render() {
     const { name, number, weekNewAddList } = this.props;
     const [{ weekNewRanking }] = weekNewAddList || [];
     return (
-      <div className="rank-item">
-        <p className="name">{name}</p>
-        <div className="rank-item-wrap">
+      <div className={styles.rankItem}>
+        <p className={styles.name}>{name}</p>
+        <div className={styles.rankItemWrap}>
           <Progress number={number} max={Number(weekNewRanking)} />
-          <p className="number-text">{number}</p>
+          <p className={styles.numberText}>{number}</p>
         </div>
       </div>
     );
@@ -114,8 +116,8 @@ class Progress extends Component {
     const { number, max = 1e4 } = this.props;
     const precent = (number / max) * 1e2;
     return (
-      <div className="progress">
-        <span className="percent" style={{ width: `${precent}%` }}></span>
+      <div className={styles.progress}>
+        <span className={styles.percent} style={{ width: `${precent}%` }}></span>
       </div>
     );
   }
@@ -127,10 +129,10 @@ class MutiProgress extends Component {
     const { percent } = this.props;
     const [one, two, three] = percent;
     return (
-      <div className="muti-progress">
-        <span className="muti-item" style={{ width: `${one}%` }}></span>
-        <span className="muti-item" style={{ width: `${two}%` }}></span>
-        <span className="muti-item" style={{ width: `${three}%` }}></span>
+      <div className={styles.mutiProgress}>
+        <span className={styles.mutiItem} style={{ width: `${one}%` }}></span>
+        <span className={styles.mutiItem} style={{ width: `${two}%` }}></span>
+        <span className={styles.mutiItem} style={{ width: `${three}%` }}></span>
       </div>
     );
   }
@@ -158,15 +160,15 @@ class Legend extends Component {
       },
     ];
     const ChooseLegend = isMuti ? (
-      <div className="muti-legend">
+      <div className={styles.mutiLegend}>
         {legendList.map(({ id, label, backgroundColor }) => (
-          <p className="legend-item" key={id}>
-            <i className="legend-icon" style={{ backgroundColor }}></i> {label}
+          <p className={styles.legendItem} key={id}>
+            <i className={styles.legendIcon} style={{ backgroundColor }}></i> {label}
           </p>
         ))}
       </div>
     ) : (
-      <p className="legend">周新增</p>
+      <p className={styles.legend}>周新增</p>
     );
     return ChooseLegend;
   }
@@ -178,9 +180,9 @@ export default class ListPage extends Component {
     this.state = {
       productList: [], // 产品信息数据
       weekNewAddList: [], // 周更新数据
-      time: [], // 时间戳数据
-      pageType: [], // 页面类型
-      curAct: [], // 侧边tab数据
+      time: "", // 时间戳数据
+      pageType: "1", // 页面类型
+      curAct: "1", // 侧边tab数据
       tableList: [], // 员工表格数据
       currentType: "1",
       dataList: [
@@ -245,8 +247,7 @@ export default class ListPage extends Component {
   }
 
   componentWillMount() {
-    const { time } = this.props;
-    const { pageType, curAct } = this.state;
+    const { pageType, curAct, time } = this.state;
     this.getTimeStamp(pageType); // 获取产品信息
     this.getProjectInfo(pageType);
     this.getStaffInfo(); // 获取产品信息
@@ -267,8 +268,10 @@ export default class ListPage extends Component {
   };
 
   // 获取当前tab状态
-  onChangeTab = (curAct) => {
-    this.setState({ curAct });
+  handleChangeTab = (pageType) => {
+    this.setState({pageType }, () => {
+      console.log('pageType', pageType)
+    });
   };
 
   // 查询员工数据
@@ -315,6 +318,7 @@ export default class ListPage extends Component {
       const res = await queryTimeStamp({ pageType });
       if (res.data && res.data.code === 200 && res.data.data) {
         let time = res.data.data;
+        console.log(time)
         this.setState({ time });
       }
     } catch (e) {}
@@ -341,26 +345,25 @@ export default class ListPage extends Component {
       currentType,
       productList
     } = this.state;
-    const { onChangeTab, onClickItem } = this.props;
     return (
       <Fragment>
-        <Header title="民生银行" />
+        <Header title="民生银行"/>
         <Banner timeStr={this.formatTimeStr(time)} />
-        <div className="search-wrap">
+        <div className={styles.searchWrap}>
           <Search onSearch={() => this.handleSearch} />
-          <SwitchTab onChangeTab={onChangeTab} pageType={pageType} />
+          <SwitchTab onChangeTab={this.handleChangeTab} pageType={pageType} />
         </div>
-        <div className="legend-wrap">
+        <div className={styles.legendWrap}>
           <Legend />
         </div>
-        <div className="rank-wrap">
+        <div className={styles.rankWrap}>
           <ButtonTab
             direction="column"
-            onClickItem={onClickItem}
+            onClickItem={() => this.onClickItem}
             curAct={curAct}
             list={productList}
           />
-          <div className="rank-content">
+          <div className={styles.rankContent}>
             {weekNewAddList.map(({ staffName, weekNewRanking }) => (
               <RankItem
                 key={staffName}
