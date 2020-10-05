@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.less';
+import styles from './index.less';
 import { PickerView } from 'antd-mobile'
 
 class Picker extends React.Component {
@@ -12,7 +12,8 @@ class Picker extends React.Component {
     }
 
     componentDidMount() {
-        let dataList = this.props.allOrganization.map(item => {
+        const {pickerList=[]} = this.props
+        const dataList = pickerList.map(item => {
             return {
                 value: item.idOrganization,
                 label: item.organizationName,
@@ -44,12 +45,12 @@ class Picker extends React.Component {
     }
     render() {
         return (
-            <div className="org-picker">
-                <div className="mask" onClick={this.cancel}></div>
-                <div className="picker-wrapper">
-                    <div className="picker-bar">
-                        <div className="picker-btn" onClick={this.cancel}>取消</div>
-                        <div className="picker-btn" onClick={this.confirm}>确定</div>
+            <div className={styles.orgPicker}>
+                <div className={styles.mask} onClick={this.cancel}></div>
+                <div className={styles.pickerWrapper}>
+                    <div className={styles.pickerBar}>
+                        <div className={styles.pickerBtn} onClick={this.cancel}>取消</div>
+                        <div className={styles.pickerBtn} onClick={this.confirm}>确定</div>
                     </div>
                     <PickerView data={this.state.dataList} value={this.state.defaultValue} cols={1} onChange={this.onChange} />
                 </div>
